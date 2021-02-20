@@ -173,14 +173,17 @@ RUN cd /opt                                                                     
     git clone https://github.com/StewLG/check_truenas_extended_play.git   check_truenas_extended_play  && \
     git clone https://github.com/thomas-krenn/check_ipmi_sensor_v3.git check_ipmi_sensor_v3 && \
     git clone https://github.com/jinjie/Nagios-WordPress-Update.git Nagios-WordPress-Update && \
-    chmod +x /opt/WL-Nagios-Plugins/check*                                          && \
-    chmod +x /opt/JE-Nagios-Plugins/check_mem/check_mem.pl                          && \
-    chmod +x /opt/check_truenas_extended_play/check_truenas_extended_play.py	&& \
-    cp /opt/JE-Nagios-Plugins/check_mem/check_mem.pl ${NAGIOS_HOME}/libexec/           && \
-    cp /opt/nagios-mssql/check_mssql_database.py ${NAGIOS_HOME}/libexec/                         && \
+    wget https://exchange.nagios.org/components/com_mtree/attachment.php?link_id=6509&cf_id=24 check_mem && \
+    chmod +x /opt/check_mem								&& \
+    chmod +x /opt/WL-Nagios-Plugins/check*						&& \
+    chmod +x /opt/JE-Nagios-Plugins/check_mem/check_mem.pl				&& \
+    chmod +x /opt/check_truenas_extended_play/check_truenas_extended_play.py		&& \
+    cp /opt/JE-Nagios-Plugins/check_mem/check_mem.pl ${NAGIOS_HOME}/libexec/		&& \
+    cp /opt/nagios-mssql/check_mssql_database.py ${NAGIOS_HOME}/libexec/		&& \
     cp /opt/nagios-mssql/check_mssql_server.py ${NAGIOS_HOME}/libexec/			&& \
-    cp /opt/check_ipmi_sensor_v3/check_ipmi_sensor ${NAGIOS_HOME}/libexec/                  && \
-    cp /opt/Nagios-WordPress-Update/check_wp_update ${NAGIOS_HOME}/libexec/                  && \
+    cp /opt/check_ipmi_sensor_v3/check_ipmi_sensor ${NAGIOS_HOME}/libexec/		&& \
+    cp /opt/Nagios-WordPress-Update/check_wp_update ${NAGIOS_HOME}/libexec/		&& \
+    cp /opt/check_mem ${NAGIOS_HOME}/libexec/						&&\
     cp /opt/check_truenas_extended_play/check_truenas_extended_play.py ${NAGIOS_HOME}/libexec/ 
 
 RUN sed -i.bak 's/.*\=www\-data//g' /etc/apache2/envvars
