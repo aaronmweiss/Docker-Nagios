@@ -12,7 +12,7 @@ NagiosGraph configuration lives in /opt/nagiosgraph/etc
 ### Install
 
 ```sh
-docker pull aaronmweiss/nagios2004:4.4.6
+docker pull aaronmweiss/nagios:latest
 ```
 
 ### Running
@@ -20,7 +20,7 @@ docker pull aaronmweiss/nagios2004:4.4.6
 Run with the example configuration with the following:
 
 ```sh
-docker run --name nagios -p 0.0.0.0:8080:80 aaronmweiss/nagios2004:4.4.6
+docker run --name nagios -p 0.0.0.0:8080:80 aaronmweiss/nagios:latest
 ```
 
 alternatively you can use external Nagios configuration & log data with the following:
