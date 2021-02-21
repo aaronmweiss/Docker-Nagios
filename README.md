@@ -62,3 +62,4 @@ The default credentials for the web interface is `nagiosadmin` / `nagios`
 * check_ipmi_sensor - Thomas-Kreen [<https://github.com/thomas-krenn/check_ipmi_sensor_v3>]
 * Nagios-Wordpress-Update - check WordPress core, theme, and plugin verison [<https://github.com/jinjie/Nagios-WordPress-Update>]
 * TrueNAS/FreeNAS - Checks alerts, zpool, and replications [<https://github.com/StewLG/check_truenas_extended_play>]
+* check_mem - Nestor@Toronto [<https://exchange.nagios.org/directory/Plugins/System-Metrics/Memory/Check-mem-%28by-Nestor%40Toronto%29/details>]
