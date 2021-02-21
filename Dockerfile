@@ -173,7 +173,6 @@ RUN cd /opt                                                                     
     git clone https://github.com/StewLG/check_truenas_extended_play.git   check_truenas_extended_play  && \
     git clone https://github.com/thomas-krenn/check_ipmi_sensor_v3.git check_ipmi_sensor_v3 && \
     git clone https://github.com/jinjie/Nagios-WordPress-Update.git Nagios-WordPress-Update && \
-    wget 0O check_mem https://exchange.nagios.org/components/com_mtree/attachment.php?link_id=6509&cf_id=24 && \
     chmod +x /opt/check_mem								&& \
     chmod +x /opt/WL-Nagios-Plugins/check*						&& \
     chmod +x /opt/JE-Nagios-Plugins/check_mem/check_mem.pl				&& \
