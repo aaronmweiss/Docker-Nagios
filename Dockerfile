@@ -211,8 +211,7 @@ RUN rm -rf /etc/sv/getty-5
 
 ADD overlay /
 
-    chmod +x /opt/check_mem                                                             && \
-    cp /opt/check_mem ${NAGIOS_HOME}/libexec/                                           && \
+RUN cp /opt/check_mem ${NAGIOS_HOME}/libexec/                    
 
 RUN echo "use_timezone=${NAGIOS_TIMEZONE}" >> ${NAGIOS_HOME}/etc/nagios.cfg
 
