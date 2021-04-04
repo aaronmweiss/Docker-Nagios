@@ -171,6 +171,7 @@ RUN cd /opt                                                                     
     git clone https://github.com/justintime/nagios-plugins.git   JE-Nagios-Plugins  && \
     git clone https://github.com/nagiosenterprises/check_mssql_collection.git   nagios-mssql  && \
     git clone https://github.com/StewLG/check_truenas_extended_play.git   check_truenas_extended_play  && \
+    git clone https://github.com/Napsty/check_rpi_temp.git check_rpi_temp		&& \
     git clone https://github.com/thomas-krenn/check_ipmi_sensor_v3.git check_ipmi_sensor_v3 && \
     git clone https://github.com/jinjie/Nagios-WordPress-Update.git Nagios-WordPress-Update && \
     chmod +x /opt/WL-Nagios-Plugins/check*						&& \
@@ -181,6 +182,7 @@ RUN cd /opt                                                                     
     cp /opt/nagios-mssql/check_mssql_server.py ${NAGIOS_HOME}/libexec/			&& \
     cp /opt/check_ipmi_sensor_v3/check_ipmi_sensor ${NAGIOS_HOME}/libexec/		&& \
     cp /opt/Nagios-WordPress-Update/check_wp_update ${NAGIOS_HOME}/libexec/		&& \
+    cp /opt/check_rpi_temp/check_rpi_temp.py ${NAGIOS_HOME}/libexec/				&& \
     cp /opt/check_truenas_extended_play/check_truenas_extended_play.py ${NAGIOS_HOME}/libexec/ 
 
 RUN sed -i.bak 's/.*\=www\-data//g' /etc/apache2/envvars
@@ -238,6 +240,9 @@ RUN cd /opt/nagiosgraph/etc && \
     sh fix-nagiosgraph-multiple-selection.sh
 
 RUN rm /opt/nagiosgraph/etc/fix-nagiosgraph-multiple-selection.sh
+
+# enable ping as suid root
+RUN chmod u+s /bin/ping
 
 # enable all runit services
 RUN ln -s /etc/sv/* /etc/service
