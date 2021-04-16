@@ -82,6 +82,7 @@ RUN echo postfix postfix/main_mailer_type string "'Internet Site'" | debconf-set
 		python3-setuptools					\
 		python3-requests					\
 		nano								\		
+		ruby-full						\
                                                 && \
     apt-get clean && rm -Rf /var/lib/apt/lists/*	
 
@@ -174,16 +175,19 @@ RUN cd /opt                                                                     
     git clone https://github.com/Napsty/check_rpi_temp.git check_rpi_temp		&& \
     git clone https://github.com/thomas-krenn/check_ipmi_sensor_v3.git check_ipmi_sensor_v3 && \
     git clone https://github.com/jinjie/Nagios-WordPress-Update.git Nagios-WordPress-Update && \
+    git clone https://gitlab.com/6uellerBpanda/check_pve.git && \
     chmod +x /opt/WL-Nagios-Plugins/check*						&& \
     chmod +x /opt/JE-Nagios-Plugins/check_mem/check_mem.pl				&& \
     chmod +x /opt/check_truenas_extended_play/check_truenas_extended_play.py		&& \
+    chmod +x /opt/check_pve/check_pve.rb						&& \
     cp /opt/JE-Nagios-Plugins/check_mem/check_mem.pl ${NAGIOS_HOME}/libexec/		&& \
     cp /opt/nagios-mssql/check_mssql_database.py ${NAGIOS_HOME}/libexec/		&& \
     cp /opt/nagios-mssql/check_mssql_server.py ${NAGIOS_HOME}/libexec/			&& \
     cp /opt/check_ipmi_sensor_v3/check_ipmi_sensor ${NAGIOS_HOME}/libexec/		&& \
     cp /opt/Nagios-WordPress-Update/check_wp_update ${NAGIOS_HOME}/libexec/		&& \
     cp /opt/check_rpi_temp/check_rpi_temp.py ${NAGIOS_HOME}/libexec/				&& \
-    cp /opt/check_truenas_extended_play/check_truenas_extended_play.py ${NAGIOS_HOME}/libexec/ 
+    cp /opt/check_truenas_extended_play/check_truenas_extended_play.py ${NAGIOS_HOME}/libexec/ && \
+    cp /opt/check_pve/check_pve.rb ${NAGIOS_HOME}/libexec/
 
 RUN sed -i.bak 's/.*\=www\-data//g' /etc/apache2/envvars
 RUN export DOC_ROOT="DocumentRoot $(echo $NAGIOS_HOME/share)"                         && \
@@ -246,6 +250,10 @@ RUN chmod u+s /bin/ping
 
 # enable all runit services
 RUN ln -s /etc/sv/* /etc/service
+
+# Fix perl local errors
+# https://www.thomas-krenn.com/en/wiki/Perl_warning_Setting_locale_failed_in_Debian
+RUN locale-gen en_US.UTF-8
 
 ENV APACHE_LOCK_DIR /var/run
 ENV APACHE_LOG_DIR /var/log/apache2
