@@ -63,6 +63,9 @@ The default credentials for the web interface is `nagiosadmin` / `nagios`
 * Nagios-Wordpress-Update - check WordPress core, theme, and plugin verison [<https://github.com/jinjie/Nagios-WordPress-Update>]
 * TrueNAS/FreeNAS - Checks alerts, zpool, and replications [<https://github.com/StewLG/check_truenas_extended_play>]
 * check_mem - Nestor@Toronto [<https://exchange.nagios.org/directory/Plugins/System-Metrics/Memory/Check-mem-%28by-Nestor%40Toronto%29/details>]
+* check_pve - Checks Proxmox VE enviornment stats [<https://gitlab.com/6uellerBpanda/check_pve>]
+* check_reboot - Checks if a reboot is required. [<https://binfalse.de/software/monitoring/check_reboot/>]
 
 ### Minor Image Upgrades
 - April 14, 2021 - APT packages upgraded 
+
