@@ -84,6 +84,7 @@ RUN echo postfix postfix/main_mailer_type string "'Internet Site'" | debconf-set
 		nano								\		
 		ruby-full						\
                                                 && \
+	
     apt-get clean && rm -Rf /var/lib/apt/lists/*	
 
 RUN ( egrep -i "^${NAGIOS_GROUP}"    /etc/group || groupadd $NAGIOS_GROUP    )                         && \
@@ -250,10 +251,6 @@ RUN chmod u+s /bin/ping
 
 # enable all runit services
 RUN ln -s /etc/sv/* /etc/service
-
-# Fix perl local errors
-# https://www.thomas-krenn.com/en/wiki/Perl_warning_Setting_locale_failed_in_Debian
-RUN locale-gen en_US.UTF-8
 
 ENV APACHE_LOCK_DIR /var/run
 ENV APACHE_LOG_DIR /var/log/apache2
